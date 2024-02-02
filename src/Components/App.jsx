@@ -60,7 +60,6 @@ function App() {
       {articles.length > 0 && !loading && page !== totalPage && (
         <LoadMore handleLoadMore={handleLoadMore} />
       )}
-
       <Toaster position="top-right" />
     </>
   );

@@ -1,1 +1,19 @@
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.85) !important;
 
+  opacity: 0;
+  transition: opacity 700ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content {
+  border: none !important;
+  outline: none !important;
+}

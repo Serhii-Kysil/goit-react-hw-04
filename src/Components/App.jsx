@@ -1,6 +1,5 @@
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { SearchBar } from "./SearchBar/SearchBar";
@@ -8,6 +7,7 @@ import { fetchArticles } from "../api";
 import { Gallery } from "./ImgGallery/ImgGallery";
 import { Loader } from "./Loader/Loader";
 import { LoadMore } from "./LoadMore/LoadMore";
+import { ErrorMessage } from "./ErrorMessage/ErrorMessage";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -54,7 +54,7 @@ function App() {
   return (
     <>
       <SearchBar onSearch={searchArticles} />
-      {error && toast.error("Oops,something went wrong, try to reload")}
+      {error && <ErrorMessage />}
       {articles.length > 0 && <Gallery items={articles} />}
       {loading && <Loader />}
       {articles.length > 0 && !loading && page !== totalPage && (

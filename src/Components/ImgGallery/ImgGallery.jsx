@@ -1,9 +1,10 @@
 import css from "./ImgGallery.module.css";
-import Modal from "react-modal";
+
 import { useState } from "react";
+import { ItemCard } from "../ItemCard/ItemCard";
+import { ImageModal } from "../ImageModal/ImageModal";
 
 export const Gallery = ({ items }) => {
-  Modal.setAppElement("#root");
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,37 +35,16 @@ export const Gallery = ({ items }) => {
   return (
     <ul className={css.list}>
       {items.map((item) => (
-        <li
-          className={css.listItem}
-          key={item.id}
-          onClick={() => openModal(item)}
-        >
-          <div className={css.imgCont}>
-            <img
-              className={css.img}
-              src={item.urls.small}
-              alt={item.alt_description}
-            />
-          </div>
-        </li>
+        <ItemCard item={item} key={item.id} openModal={openModal} />
       ))}
 
       {selectedItem && (
-        <Modal
-          closeTimeoutMS={10000}
+        <ImageModal
           isOpen={isOpen}
-          onRequestClose={closeModal}
-          contentLabel="Card"
-          style={customStyles}
-        >
-          <div className={css.modalCont}>
-            <img
-              className={css.modalImg}
-              src={selectedItem.urls.regular}
-              alt={selectedItem.alt_description}
-            />
-          </div>
-        </Modal>
+          selectedItem={selectedItem}
+          closeModal={closeModal}
+          customStyles={customStyles}
+        />
       )}
     </ul>
   );
